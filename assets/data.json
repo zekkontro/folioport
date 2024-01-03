@@ -1,0 +1,39 @@
+{
+  "firstName": "Berat",
+  "secondName": "Kurt",
+  "email": "beratkurt2024@outlook.com",
+  "role": "Full-Stack Mobile Developer",
+  "introductionText": "I am creating compatible, user-oriented and innovative applications for both iOS and Android with Flutter.",
+  "socialProfile": {
+    "instagram": "https://www.instagram.com/beratkurttx/",
+    "dribble": null,
+    "linkedin": "https://www.linkedin.com/in/berat-kurt-958b6a202/",
+    "github": "https://github.com/zekkontro",
+    "youtube": null
+  },
+  "githubRepos": [
+    "https://github.com/zekkontro/shortel",
+    "https://github.com/zekkontro/sohbetapp",
+    "https://github.com/zekkontro/application_landing_page",
+    "https://github.com/zekkontro/walf-database",
+    "https://github.com/zekkontro/youtube_cc",
+    "https://github.com/zekkontro/flutter-packages-api"
+  ],
+  "mediumBlogs": [
+    "https://zekkontro.medium.com/g%C3%BCnl%C3%BCk-doz-2-flutter-web-ile-responsive-web-uygulamas%C4%B1-geli%C5%9Ftirme-b0d8672987f9",
+    "https://medium.com/tech-sheet/sosyal-m%C3%BChendislik-teoride-siber-g%C3%BCvenlik-89404688aef8",
+    "https://zekkontro.medium.com/g%C3%BCnl%C3%BCk-doz-1-flutterda-rest-api-ile-%C3%B6rnek-uygulama-geli%C5%9Ftirme-5c7df240c7ed"
+  ],
+  "skills": [
+    "Flutter",
+    "Dart",
+    "Python",
+    "REST API",
+    "Firebase",
+    "MongoDB",
+    "SQL",
+    "Figma",
+    "Hacking"
+  ],
+  "aboutMeText": "Hi There! I'm Berat Kurt. I have been working in software development for more than 5 years. I have also been developing efficiency, ease of use and high-performance applications with Flutter for the last 3.5 years."
+}
