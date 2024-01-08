@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:folioport/model/personal_information.dart';
+import 'package:folioport/model/json_data_model.dart';
 import 'package:folioport/model/social_profile.dart';
 
 class JsonDataViewmodel with ChangeNotifier {
   final String _path = "assets/data.json";
-   PersonalInformation? _personalInformationData;
+   JsonDataModel? _jsonDataModel;
 
-  PersonalInformation get personalInformationData => _personalInformationData!;
-  SocialProfile get socialProfile => _personalInformationData!.socialProfile;
+  JsonDataModel get jsonDataModel => _jsonDataModel!;
+  SocialProfile get socialProfile => _jsonDataModel!.socialProfile;
   initialize() async {
     final String response = await rootBundle.loadString(_path);
-    print("xx");
-    print(response);
-    _personalInformationData = PersonalInformation.fromJson(response);
-    print(_personalInformationData!.email);
+    _jsonDataModel = JsonDataModel.fromJson(response);
     notifyListeners();
   }
 }

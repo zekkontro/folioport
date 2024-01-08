@@ -47,7 +47,7 @@ class AboutMeView extends StatelessWidget {
                     SizedBox(
                       width: context.sized.dynamicWidth(0.3),
                       child: Text(
-                        notifier.personalInformationData.aboutMeText,
+                        notifier.jsonDataModel.aboutMeText,
                         style: AppTheme.getBodySmall(context).copyWith(
                             fontWeight: FontWeight.w400, fontSize: 18),
                       ),
@@ -60,7 +60,7 @@ class AboutMeView extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         childAspectRatio: 4 / 3,
                         crossAxisCount: 3,
-                        children: notifier.personalInformationData.skills
+                        children: notifier.jsonDataModel.skills
                             .map<Widget>((e) => SkillWidget(text: e))
                             .toList(),
                       ),

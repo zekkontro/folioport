@@ -33,14 +33,14 @@ class IntroductionPartView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Hello I'm ${notifier.personalInformationData.firstName} ${notifier.personalInformationData.secondName}",
+                  "Hello I'm ${notifier.jsonDataModel.firstName} ${notifier.jsonDataModel.secondName}",
                   style: AppTheme.getBodySmall(context),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 Text(
-                  "I'm a ${notifier.personalInformationData.role}",
+                  "I'm a ${notifier.jsonDataModel.role}",
                   style: AppTheme.getHeadlineMedium(context),
                   textAlign: TextAlign.start,
                 ),
@@ -50,7 +50,7 @@ class IntroductionPartView extends StatelessWidget {
                 SizedBox(
                   width: 400,
                   child: Text(
-                    notifier.personalInformationData.introductionText,
+                    notifier.jsonDataModel.introductionText,
                     style:
                         AppTheme.getBodySmall(context).copyWith(fontSize: 15),
                   ),

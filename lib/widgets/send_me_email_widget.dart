@@ -40,7 +40,7 @@ class SendmeEmailWidget extends StatelessWidget {
                   onPressed: () async {
                     final Uri emailLaunchUri = Uri(
                       scheme: 'mailto',
-                      path: notifier.personalInformationData.email,
+                      path: notifier.jsonDataModel.email,
                       queryParameters: {'subject': 'Work with me', 'body': ''},
                     );
 

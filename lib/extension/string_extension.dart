@@ -16,3 +16,7 @@ extension StringExtension on String {
     );
   }
 }
+
+extension NullableStringExtension on String? {
+  isNullOrEmpty() => this == null || this!.isEmpty ? true : false;
+}

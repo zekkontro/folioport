@@ -27,14 +27,14 @@ class CustomAppBar extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Text.rich(TextSpan(children: [
                     TextSpan(
-                        text: notifier.personalInformationData.firstName,
+                        text: notifier.jsonDataModel.firstName,
                         style: GoogleFonts.montserratAlternates(
                           color: AppTheme.getBodyMedium(context).color,
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                         )),
                     TextSpan(
-                        text: notifier.personalInformationData.secondName,
+                        text: notifier.jsonDataModel.secondName,
                         style: GoogleFonts.montserratAlternates(
                           color: AppTheme.getBodyMedium(context).color,
                           fontSize: 20,

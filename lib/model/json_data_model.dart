@@ -3,20 +3,22 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:folioport/model/github_repo_model.dart';
+import 'package:folioport/model/medium_blog_model.dart';
 import 'package:folioport/model/social_profile.dart';
 
-class PersonalInformation {
+class JsonDataModel {
   final String firstName;
   final String secondName;
   final String email;
   final String role;
   final String introductionText;
   final SocialProfile socialProfile;
-  final List<String> githubRepos;
-  final List<String> mediumBlogs;
+  final List<GithubRepoModel> githubRepos;
+  final List<MediumBlogModel> mediumBlogs;
   final List<String> skills;
   final String aboutMeText;
-  PersonalInformation({
+  JsonDataModel({
     required this.firstName,
     required this.secondName,
     required this.email,
@@ -29,19 +31,19 @@ class PersonalInformation {
     required this.aboutMeText,
   });
 
-  PersonalInformation copyWith({
+  JsonDataModel copyWith({
     String? firstName,
     String? secondName,
     String? email,
     String? role,
     String? introductionText,
     SocialProfile? socialProfile,
-    List<String>? githubRepos,
-    List<String>? mediumBlogs,
+    List<GithubRepoModel>? githubRepos,
+    List<MediumBlogModel>? mediumBlogs,
     List<String>? skills,
     String? aboutMeText,
   }) {
-    return PersonalInformation(
+    return JsonDataModel(
       firstName: firstName ?? this.firstName,
       secondName: secondName ?? this.secondName,
       email: email ?? this.email,
@@ -63,41 +65,48 @@ class PersonalInformation {
       'role': role,
       'introductionText': introductionText,
       'socialProfile': socialProfile.toMap(),
-      'githubRepos': githubRepos,
-      'mediumBlogs': mediumBlogs,
+      'githubRepos': githubRepos.map((x) => x.toMap()).toList(),
+      'mediumBlogs': mediumBlogs.map((x) => x.toMap()).toList(),
       'skills': skills,
       'aboutMeText': aboutMeText,
     };
   }
 
-  factory PersonalInformation.fromMap(Map<String, dynamic> map) {
-    return PersonalInformation(
-        firstName: map['firstName'],
-        secondName: map['secondName'],
-        email: map['email'],
-        role: map['role'],
-        aboutMeText: map['aboutMeText'],
-        introductionText: map['introductionText'],
-        socialProfile: SocialProfile.fromMap(map['socialProfile']),
-        githubRepos: List<String>.from((map['githubRepos'])),
-        mediumBlogs: List<String>.from((map['mediumBlogs'])),
-        skills: List<String>.from(
-          (map['skills']),
-        ));
+  factory JsonDataModel.fromMap(Map<String, dynamic> map) {
+    return JsonDataModel(
+        aboutMeText: map['aboutMeText'] as String,
+        firstName: map['firstName'] as String,
+        secondName: map['secondName'] as String,
+        email: map['email'] as String,
+        role: map['role'] as String,
+        introductionText: map['introductionText'] as String,
+        socialProfile:
+            SocialProfile.fromMap(map['socialProfile'] as Map<String, dynamic>),
+        githubRepos: List<GithubRepoModel>.from(
+          (map['githubRepos'] as List<dynamic>).map<GithubRepoModel>(
+            (x) => GithubRepoModel.fromMap(x as Map<String, dynamic>),
+          ),
+        ),
+        mediumBlogs: List<MediumBlogModel>.from(
+          (map['mediumBlogs'] as List<dynamic>).map<MediumBlogModel>(
+            (x) => MediumBlogModel.fromMap(x as Map<String, dynamic>),
+          ),
+        ),
+        skills: List<String>.from(map['skills'] as List<dynamic>));
   }
 
   String toJson() => json.encode(toMap());
 
-  factory PersonalInformation.fromJson(String source) =>
-      PersonalInformation.fromMap(json.decode(source));
+  factory JsonDataModel.fromJson(String source) =>
+      JsonDataModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'PersonalInformation(firstName: $firstName, secondName: $secondName, email: $email, role: $role, introductionText: $introductionText, socialProfile: $socialProfile, githubRepos: $githubRepos, mediumBlogs: $mediumBlogs, skills: $skills, aboutMeText: $aboutMeText)';
+    return 'JsonDataModel(firstName: $firstName, secondName: $secondName, email: $email, role: $role, introductionText: $introductionText, socialProfile: $socialProfile, githubRepos: $githubRepos, mediumBlogs: $mediumBlogs, skills: $skills, aboutMeText: $aboutMeText)';
   }
 
   @override
-  bool operator ==(covariant PersonalInformation other) {
+  bool operator ==(covariant JsonDataModel other) {
     if (identical(this, other)) return true;
 
     return other.firstName == firstName &&

@@ -29,7 +29,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-          future: Future.delayed(const Duration(seconds: 4)),
+          future: Future.delayed(const Duration(seconds: 5)),
           builder: (context, snapshot) {
             return snapshot.connectionState == ConnectionState.waiting
                 ? Center(
@@ -43,7 +43,7 @@ class _HomeViewState extends State<HomeView> {
                         Column(children: [
                           Assets.icons.logo.toSvgAsset(width: 100, height: 100),
                           const SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           Text(
                             "folioport",
@@ -67,38 +67,49 @@ class _HomeViewState extends State<HomeView> {
                       ],
                     ),
                   )
-                : SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: context.sized.dynamicWidth(0.1),
-                              vertical: context.sized.dynamicHeight(0.1)),
-                          child: Column(
-                            children: [
-                              const CustomAppBar(),
-                              SizedBox(
-                                height: context.sized.dynamicHeight(0.15),
-                              ),
-                              const IntroductionPartView(),
-                            ],
+                : Consumer<JsonDataViewmodel>(
+                    builder: (context, notifier, child) {
+                    return SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: context.sized.dynamicWidth(0.1),
+                                vertical: context.sized.dynamicHeight(0.1)),
+                            child: Column(
+                              children: [
+                                const CustomAppBar(),
+                                SizedBox(
+                                  height: context.sized.dynamicHeight(0.15),
+                                ),
+                                const IntroductionPartView(),
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: context.sized.dynamicHeight(0.15),
-                        ),
-                        const GithubReposView(),
-                        SizedBox(
-                          height: context.sized.dynamicHeight(0.10),
-                        ),
-                        const BlogsView(),
-                        SizedBox(
-                          height: context.sized.dynamicHeight(0.10),
-                        ),
-                        const AboutMeView()
-                      ],
-                    ),
-                  );
+                          notifier.jsonDataModel.githubRepos.isEmpty
+                              ? Container()
+                              : SizedBox(
+                                  height: context.sized.dynamicHeight(0.15),
+                                ),
+                          notifier.jsonDataModel.githubRepos.isEmpty
+                              ? Container()
+                              : const GithubReposView(),
+                          notifier.jsonDataModel.mediumBlogs.isEmpty
+                              ? SizedBox(
+                                  height: context.sized.dynamicHeight(0.10),
+                                )
+                              : Container(),
+                          notifier.jsonDataModel.mediumBlogs.isEmpty
+                              ? Container()
+                              : const BlogsView(),
+                          SizedBox(
+                            height: context.sized.dynamicHeight(0.10),
+                          ),
+                          const AboutMeView()
+                        ],
+                      ),
+                    );
+                  });
           }),
     );
   }

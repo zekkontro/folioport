@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:folioport/model/medium_blog_model.dart';
 import 'package:folioport/themes/themes.dart';
 import 'package:kartal/kartal.dart';
 
 class BlogWidget extends StatelessWidget {
+  final MediumBlogModel blogModel;
   final bool isSecondaryColor;
-  const BlogWidget({super.key, required this.isSecondaryColor});
+  const BlogWidget(
+      {super.key, required this.isSecondaryColor, required this.blogModel});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +22,7 @@ class BlogWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Row(
           children: [
-            Image.network(
-                "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*SzCoT2awzCHyWbF7bFqYKw.png"),
+            Image.network(blogModel.coverImageLink),
             SizedBox(
               width: context.sized.dynamicWidth(0.08),
             ),
@@ -29,7 +31,7 @@ class BlogWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "APR 22 - 5 MIN READ",
+                    blogModel.publishDate.toUpperCase(),
                     style: AppTheme.getBodySmall(context).copyWith(
                       fontSize: 12,
                     ),
@@ -38,7 +40,7 @@ class BlogWidget extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "How to become a developer and get your first job as quickly as possible",
+                    blogModel.title,
                     style: AppTheme.getBodyMedium(context).copyWith(
                       fontSize: 22,
                     ),
@@ -47,7 +49,8 @@ class BlogWidget extends StatelessWidget {
                     height: 15,
                   ),
                   Text(
-                    "Have you ever thought about becoming a software developer or looking for a change of career? This article will give you a solid plan to get",
+                    blogModel.description,
+                    overflow: TextOverflow.ellipsis,
                     style: AppTheme.getBodySmall(context)
                         .copyWith(fontSize: 16, fontWeight: FontWeight.w400),
                   ),

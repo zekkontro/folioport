@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:folioport/extension/string_extension.dart';
 import 'package:folioport/gen/assets.gen.dart';
 import 'package:folioport/viewmodels/json_data_viewmodel.dart';
 import 'package:folioport/widgets/social_media_icon_widget.dart';
@@ -12,7 +13,7 @@ class SocialMediaRowWidget extends StatelessWidget {
     return Consumer<JsonDataViewmodel>(builder: (context, notifier, child) {
       return Row(
         children: [
-          notifier.socialProfile.instagram == null
+          notifier.socialProfile.instagram.isNullOrEmpty()
               ? Container()
               : SocialMediaIconWidget(
                   assetPath: Assets.icons.instagram,
@@ -21,7 +22,7 @@ class SocialMediaRowWidget extends StatelessWidget {
           const SizedBox(
             width: 20,
           ),
-          notifier.socialProfile.linkedin == null
+          notifier.socialProfile.linkedin.isNullOrEmpty()
               ? Container()
               : SocialMediaIconWidget(
                   assetPath: Assets.icons.linkedin,
@@ -29,7 +30,7 @@ class SocialMediaRowWidget extends StatelessWidget {
           const SizedBox(
             width: 20,
           ),
-          notifier.socialProfile.github == null
+          notifier.socialProfile.github.isNullOrEmpty()
               ? Container()
               : SocialMediaIconWidget(
                   assetPath: Assets.icons.github,
@@ -37,7 +38,7 @@ class SocialMediaRowWidget extends StatelessWidget {
           const SizedBox(
             width: 20,
           ),
-          notifier.socialProfile.dribble == null
+          notifier.socialProfile.dribble.isNullOrEmpty()
               ? Container()
               : SocialMediaIconWidget(
                   assetPath: Assets.icons.dribble,

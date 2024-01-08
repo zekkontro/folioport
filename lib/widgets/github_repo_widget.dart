@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:folioport/extension/string_extension.dart';
 import 'package:folioport/gen/assets.gen.dart';
+import 'package:folioport/model/github_repo_model.dart';
 import 'package:folioport/themes/themes.dart';
 import 'dart:math' as math;
 
@@ -12,7 +13,8 @@ Color generateRandomColor() {
 }
 
 class GithubRepoWidget extends StatelessWidget {
-  const GithubRepoWidget({super.key});
+  final GithubRepoModel model;
+  const GithubRepoWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class GithubRepoWidget extends StatelessWidget {
 
     return GestureDetector(
       onTap: () async {
-        await launchUrlString("https://github.com/zekkontro/berat_calculator");
+        await launchUrlString(model.url);
       },
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -46,16 +48,15 @@ class GithubRepoWidget extends StatelessWidget {
               height: 20,
             ),
             Text(
-              "readsomo",
+              model.title,
               style: AppTheme.getBodyMedium(context).copyWith(fontSize: 15),
             ),
             const SizedBox(
               height: 20,
             ),
             Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-              style:
-                  AppTheme.getBodySmall(context).copyWith(fontSize: 15),
+              model.description ?? "",
+              style: AppTheme.getBodySmall(context).copyWith(fontSize: 15),
             ),
             const SizedBox(
               height: 10,
@@ -69,9 +70,9 @@ class GithubRepoWidget extends StatelessWidget {
                 const SizedBox(
                   width: 3,
                 ),
-                const Text(
-                  "Flutter",
-                  style: TextStyle(fontSize: 13),
+                Text(
+                  model.language,
+                  style: const TextStyle(fontSize: 13),
                 ),
                 const SizedBox(
                   width: 8,
@@ -80,7 +81,8 @@ class GithubRepoWidget extends StatelessWidget {
                 const SizedBox(
                   width: 3,
                 ),
-                const Text("590", style: TextStyle(fontSize: 13)),
+                Text(model.stars.toString(),
+                    style: const TextStyle(fontSize: 13)),
                 const SizedBox(
                   width: 8,
                 ),
@@ -88,7 +90,8 @@ class GithubRepoWidget extends StatelessWidget {
                 const SizedBox(
                   width: 3,
                 ),
-                const Text("15k", style: TextStyle(fontSize: 13)),
+                Text(model.forks.toString(),
+                    style: const TextStyle(fontSize: 13)),
               ],
             ),
             const SizedBox(
